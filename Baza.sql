@@ -19,14 +19,6 @@ CREATE TABLE przedmiot
   
 );
 
-CREATE TABLE ocena
-(
-  ocena_id			serial		NOT NULL,
-  nazwa_pelna			varchar(15)	NOT NULL,
-  nazwa_skrot			integer		NOT NULL,
-  CONSTRAINT ocena_pkey PRIMARY KEY (ocena_id),
-);
-
 CREATE TABLE tytul_naukowy
 (
   tytul_naukowy_id		serial		NOT NULL,
@@ -38,11 +30,13 @@ CREATE TABLE uczen
 (
   uczen_id			serial		NOT NULL,
   nazwisko			varchar(30)	NOT NULL,
-  imie				varchar(20)	NOT NULL,
-  data_urodzenia		date		NOT NULL,
-  kod_pocztowy		integer		NOT NULL,
-  miejscowosc			varchar(30)	NOT NULL,
-  ulica_nr			varchar(30)	NOT NULL,
+  imie				varchar(30)	NOT NULL,
+  klasa       integer NOT NULL,
+  kod_pocztowy numeric(5) NOT NULL,
+  miejscowosc varchar(20) NOT NULL,
+  ulica_nr varchar(30) NOT NULL,
+  data_urodzenia DATE NOT NULL,
+  opiekun integer NOT NULL,
   CONSTRAINT uczen_pkey PRIMARY KEY (uczen_id)
 );
 
