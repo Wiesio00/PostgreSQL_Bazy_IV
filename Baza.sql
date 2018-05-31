@@ -67,7 +67,7 @@ CREATE TABLE nauczyciel
 	przedmiot_2 			integer,
   tytul_naukowy		integer   NOT NULL,
   staz_pracy_lata		integer,
-  nr_tel				numeric(9),
+  telefon				numeric(9),
   email				varchar(30),
   CONSTRAINT nauczyciel_pkey PRIMARY KEY (nauczyciel_id),
 	CONSTRAINT fk_nauczyciel_przedmiot_1 FOREIGN KEY (przedmiot_1)
