@@ -66,10 +66,10 @@ CREATE TABLE klasa
 	uczen integer NOT NULL,
 	wychowawca integer NOT NULL,
 	CONSTRAINT klasa_pkey PRIMARY KEY (klasa_id),
-	CONSTARINT fk_klasa_uczen FOREIGN KEY (uczen_id)
+	CONSTRAINT fk_klasa_uczen FOREIGN KEY (uczen)
 		REFERENCES uczen (uczen_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
-	CONSTRAINT fk_klasa_nauczyciel FOREIGN KEY (nauczyciel)
+	CONSTRAINT fk_klasa_wychowawca FOREIGN KEY (wychowawca)
 		REFERENCES nauczyciel (nauczyciel_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
@@ -85,12 +85,15 @@ CREATE TABLE nauczyciel
   tytul_naukowy		integer   NOT NULL,
   staz_pracy_lata		integer,
   nr_tel				numeric(9),
-  mail				varchar(30),
+  email				varchar(30),
   CONSTRAINT nauczyciel_pkey PRIMARY KEY (nauczyciel_id),
-	CONSTRAINT fk_nauczyciel_przedmiot FOREIGN KEY (przedmiot)
+	CONSTRAINT fk_nauczyciel_przedmiot_1 FOREIGN KEY (przedmiot_1)
 		REFERENCES przedmiot (przedmiot_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
-	CONSTRAINT fk_nauczyciel_tytul_naukowy FOREIGN KEY
+	CONSTRAINT fk_nauczyciel_przedmiot_2 FOREIGN KEY (przedmiot_2)
+		REFERENCES przedmiot (przedmiot_id) MATCH SIMPLE
+		ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT fk_nauczyciel_tytul_naukowy FOREIGN KEY (tytul_naukowy)
 		REFERENCES tytul_naukowy (tytul_naukowy_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
@@ -102,14 +105,14 @@ CREATE TABLE dziennik_ocen
 	przedmiot integer NOT NULL,
 	nauczyciel integer NOT NULL,
 	uczen integer NOT NULL,
-	ocena numeric(2.1) NOT NULL,
+	ocena numeric(2,1) NOT NULL,
 	data date NOT NULL,
 	typ_egzaminu integer NOT NULL,
   CONSTRAINT dziennik_ocen_pkey PRIMARY KEY (dziennik_ocen_id),
 	CONSTRAINT fk_dziennik_ocen_klasa FOREIGN KEY (klasa)
 		REFERENCES klasa (klasa_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
-	CONSTARINT fk_dziennik_ocen_przedmiot FOREIGN KEY (przedmiot)
+	CONSTRAINT fk_dziennik_ocen_przedmiot FOREIGN KEY (przedmiot)
 		REFERENCES przedmiot (przedmiot_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT fk_dziennik_ocen_nauczyciel FOREIGN KEY (nauczyciel)
@@ -120,8 +123,9 @@ CREATE TABLE dziennik_ocen
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT fk_dziennik_ocen_typ_egzaminu FOREIGN KEY (typ_egzaminu)
 		REFERENCES typ_egzaminu (typ_egzaminu_id) MATCH SIMPLE
-		ON UPDATE NO ACTION ON DELETE NO ACTION,
+		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
 
 
 
