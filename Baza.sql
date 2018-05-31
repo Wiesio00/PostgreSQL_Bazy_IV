@@ -130,10 +130,9 @@ CREATE TABLE dziennik_ocen
 );
 
 
-
 DROP TABLE dziennik_ocen;
-DROP TABLE nauczyciel;
 DROP TABLE klasa;
+DROP TABLE nauczyciel;
 DROP TABLE uczen;
 DROP TABLE opiekun;
 DROP TABLE tytul_naukowy;
