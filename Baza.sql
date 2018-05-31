@@ -9,7 +9,6 @@ ale nie udało nam się z nim skontaktować.
 */
 
 
-
 CREATE TABLE przedmiot
 (
   przedmiot_id			serial  NOT NULL,
@@ -38,7 +37,7 @@ CREATE TABLE opiekun
 	nazwisko varchar(30) NOT NULL,
 	imie varchar(30) NOT NULL,
 	telefon numeric(9) NOT NULL,
-	email varchar(40),
+	email varchar(50),
 	CONSTRAINT opiekun_pkey PRIMARY KEY (opiekun_id)
 );
 
@@ -68,7 +67,7 @@ CREATE TABLE nauczyciel
   tytul_naukowy		integer   NOT NULL,
   staz_pracy_lata		integer,
   telefon				numeric(9),
-  email				varchar(30),
+  email				varchar(50),
   CONSTRAINT nauczyciel_pkey PRIMARY KEY (nauczyciel_id),
 	CONSTRAINT fk_nauczyciel_przedmiot_1 FOREIGN KEY (przedmiot_1)
 		REFERENCES przedmiot (przedmiot_id) MATCH SIMPLE
@@ -128,6 +127,47 @@ CREATE TABLE dziennik_ocen
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
+INSERT INTO typ_egzaminu (rodzaj_egzaminu) VALUES ('sprawdzian');
+INSERT INTO typ_egzaminu (rodzaj_egzaminu) VALUES ('kartkówka');
+INSERT INTO typ_egzaminu (rodzaj_egzaminu) VALUES ('odpowiedź ustna');
+INSERT INTO typ_egzaminu (rodzaj_egzaminu) VALUES ('praca domowa');
+INSERT INTO typ_egzaminu (rodzaj_egzaminu) VALUES ('aktywność');
+
+
+INSERT INTO tytul_naukowy (nazwa_skrot) VALUES ('inż.');
+INSERT INTO tytul_naukowy (nazwa_skrot) VALUES ('mgr');
+INSERT INTO tytul_naukowy (nazwa_skrot) VALUES ('mgr inż.');
+INSERT INTO tytul_naukowy (nazwa_skrot) VALUES ('dr');
+INSERT INTO tytul_naukowy (nazwa_skrot) VALUES ('dr hab.');
+
+INSERT INTO przedmiot (nazwa) VALUES ('biologia');
+INSERT INTO przedmiot (nazwa) VALUES ('polski');
+INSERT INTO przedmiot (nazwa) VALUES ('matematyka');
+INSERT INTO przedmiot (nazwa) VALUES ('chemia');
+INSERT INTO przedmiot (nazwa) VALUES ('fizyka');
+INSERT INTO przedmiot (nazwa) VALUES ('religia');
+INSERT INTO przedmiot (nazwa) VALUES ('plastyka');
+INSERT INTO przedmiot (nazwa) VALUES ('informatyka');
+
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Zajac','Jan','1','1','1','345748029','Zajac.Jan@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Pawlowski','Andrzej','2','2','2','833797112','Pawlowski.Andrzej@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Wieczorek','Tomasz','5','4','3','787391646','Wieczorek.Tomasz@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Jablonska','Aneta','6','4','1','500316696','Jablonska.Aneta@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Wrobel','Dominika','7','1','3','680475819','Wrobel.Dominika@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Nowakowski','Przemyslaw','8','2','2','789329155','Nowakowski.Przemyslaw@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,przedmiot_2,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Michalski','Zenon','3','7','3','4','601102609','Michalski.Zenon@gmail.com');
+INSERT INTO nauczyciel (nazwisko,imie,przedmiot_1,przedmiot_2,tytul_naukowy,staz_pracy_lata,telefon,email) VALUES ('Krol','Pawel','4','7','5','15','360196354','Krol.Pawel@gmail.com');
+
+
+SELECT * from dziennik_ocen;
+SELECT * from klasa;
+SELECT * from nauczyciel;
+SELECT * from uczen;
+SELECT * from opiekun;
+SELECT * from tytul_naukowy;
+SELECT * from typ_egzaminu;
+SELECT * from przedmiot;
+
 
 DROP TABLE dziennik_ocen;
 DROP TABLE klasa;
@@ -137,7 +177,5 @@ DROP TABLE opiekun;
 DROP TABLE tytul_naukowy;
 DROP TABLE typ_egzaminu;
 DROP TABLE przedmiot;
-
-
 
 
