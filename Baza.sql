@@ -20,7 +20,7 @@ CREATE TABLE przedmiot
 
 CREATE TABLE typ_egzaminu
 (
-	typ_egzaminu_id integer NOT NULL,
+	typ_egzaminu_id serial NOT NULL,
 	rodzaj_egzaminu varchar(20) NOT NULL,
 	CONSTRAINT typ_egzaminu_pkey PRIMARY KEY (typ_egzaminu_id)
 );
