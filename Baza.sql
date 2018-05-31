@@ -47,7 +47,6 @@ CREATE TABLE uczen
   uczen_id			serial		NOT NULL,
   nazwisko			varchar(30)	NOT NULL,
   imie				varchar(30)	NOT NULL,
-  klasa       integer NOT NULL,
   kod_pocztowy    numeric(5) NOT NULL,
   miejscowosc     varchar(20) NOT NULL,
   ulica_nr    varchar(30) NOT NULL,
