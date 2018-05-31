@@ -18,6 +18,13 @@ CREATE TABLE przedmiot
   
 );
 
+CREATE TABLE typ_egzaminu
+(
+	typ_egzaminu_id integer NOT NULL
+	rodzaj_egzaminu varchar(20) NOT NULL,
+	CONSTRAINT typ_egzaminu_pkey PRIMARY KEY (typ_egzaminu_id)
+);
+
 CREATE TABLE tytul_naukowy
 (
   tytul_naukowy_id		serial	NOT NULL,
@@ -115,11 +122,6 @@ CREATE TABLE dziennik_ocen
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
 );
 
-CREATE TABLE typ_egzaminu
-(
-	typ_egzaminu_id integer NOT NULL
-	rodzaj_egzaminu varchar(20) NOT NULL,
-	CONSTRAINT typ_egzaminu_pkey PRIMARY KEY (typ_egzaminu_id)
-);
+
 
 
