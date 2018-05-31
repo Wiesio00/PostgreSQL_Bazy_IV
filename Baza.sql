@@ -59,22 +59,6 @@ CREATE TABLE uczen
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE klasa
-(
-	klasa_id serial NOT NULL,
-	nazwa varchar(30) NOT NULL,
-	uczen integer NOT NULL,
-	wychowawca integer NOT NULL,
-	CONSTRAINT klasa_pkey PRIMARY KEY (klasa_id),
-	CONSTRAINT fk_klasa_uczen FOREIGN KEY (uczen)
-		REFERENCES uczen (uczen_id) MATCH SIMPLE
-		ON UPDATE NO ACTION ON DELETE NO ACTION,
-	CONSTRAINT fk_klasa_wychowawca FOREIGN KEY (wychowawca)
-		REFERENCES nauczyciel (nauczyciel_id) MATCH SIMPLE
-		ON UPDATE NO ACTION ON DELETE NO ACTION
-);
-
-
 CREATE TABLE nauczyciel
 (
   nauczyciel_id		serial		NOT NULL,
@@ -97,6 +81,25 @@ CREATE TABLE nauczyciel
 		REFERENCES tytul_naukowy (tytul_naukowy_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+
+
+CREATE TABLE klasa
+(
+	klasa_id serial NOT NULL,
+	nazwa varchar(30) NOT NULL,
+	uczen integer NOT NULL,
+	wychowawca integer NOT NULL,
+	CONSTRAINT klasa_pkey PRIMARY KEY (klasa_id),
+	CONSTRAINT fk_klasa_uczen FOREIGN KEY (uczen)
+		REFERENCES uczen (uczen_id) MATCH SIMPLE
+		ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT fk_klasa_wychowawca FOREIGN KEY (wychowawca)
+		REFERENCES nauczyciel (nauczyciel_id) MATCH SIMPLE
+		ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+
 
 CREATE TABLE dziennik_ocen
 (
@@ -125,6 +128,8 @@ CREATE TABLE dziennik_ocen
 		REFERENCES typ_egzaminu (typ_egzaminu_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+
 
 
 
