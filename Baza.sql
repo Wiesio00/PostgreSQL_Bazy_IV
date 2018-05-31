@@ -10,72 +10,64 @@ ale nie udało nam się z nim skontaktować.
 
 
 
-CREATE TABLE dziennik_ocen
+CREATE TABLE przedmiot
 (
-  dziennik_ocen_id		serial		NOT NULL,
-  uczen				varchar(20)	NOT NULL,
-  przedmiot				
-  nauczyciel			
-  ocena
-  data
-  godzina
-  CONSTRAINT dziennik_ocen_pkey PRIMARY KEY (dziennik_ocen_id)
+  przedmiot_id			serial		NOT NULL,
+  nazwa_pelna			varchar(30)	NOT NULL,
+  nazwa_skrot			varchar(8)	NOT NULL,
+  CONSTRAINT przedmiot_pkey PRIMARY KEY (przedmiot_id)
+  
+);
+
+CREATE TABLE ocena
+(
+  ocena_id			serial		NOT NULL,
+  nazwa_pelna			varchar(15)	NOT NULL,
+  nazwa_skrot			integer		NOT NULL,
+  CONSTRAINT ocena_pkey PRIMARY KEY (ocena_id),
+);
+
+CREATE TABLE tytul_naukowy
+(
+  tytul_naukowy_id		serial		NOT NULL,
+  nazwa_skrot			varchar(10)	NOT NULL,
+  CONSTRAINT tytul_naukowy_pkey PRIMARY KEY (tytul_naukowy_id),
 );
 
 CREATE TABLE uczen
 (
   uczen_id			serial		NOT NULL,
-  nazwisko
-  imie
-  data_urodzenia
-  kod_pocztowy
-  miejscowosc
-  ulica_nr
-  rodzice
-);
-
-CREATE TABLE rodzic
-(
-  rodzic_id			serial		NOT NULL,
-  imie_mamy
-  nr_tel_mamy
-  imie_taty
-  nr_tel_taty
-);
-
-
-CREATE TABLE przedmiot
-(
-  przedmiot_id			serial		NOT NULL,
-  nazwa_pelna
-  nazwa_skrot
+  nazwisko			varchar(30)	NOT NULL,
+  imie				varchar(20)	NOT NULL,
+  data_urodzenia		date		NOT NULL,
+  kod_pocztowy		integer		NOT NULL,
+  miejscowosc			varchar(30)	NOT NULL,
+  ulica_nr			varchar(30)	NOT NULL,
+  CONSTRAINT uczen_pkey PRIMARY KEY (uczen_id)
 );
 
 CREATE TABLE nauczyciel
 (
-  nauczyciel_id			serial		NOT NULL,
-  nazwisko
-  imie
-  tytul_naukowy
-  staz_pracy
-  nr_tel
-  mail
+  nauczyciel_id		serial		NOT NULL,
+  nazwisko			varchar(30)	NOT NULL,
+  imie				varchar(20)	NOT NULL,
+  tytul_naukowy		varchar(10)	NOT NULL,
+  staz_pracy_lata		integer		NOT NULL,
+  nr_tel				integer		NOT NULL,
+  mail				varchar(30)	NOT NULL,
+  CONSTRAINT nauczyciel_pkey PRIMARY KEY (nauczyciel_id),
 );
 
-
-CREATE TABLE tytul_naukowy
+CREATE TABLE dziennik_ocen
 (
-  ocena_id			serial		NOT NULL,
-  nazwa_pelna
-  nazwa_skrot
-);
-
-
-CREATE TABLE ocena
-(
-  ocena_id			serial		NOT NULL,
-  nazwa_pelna
-  nazwa_skrot
+  dziennik_ocen_id		serial		NOT NULL,
+  uczen				varchar(50)	NOT NULL,
+  przedmiot			varchar(20)	NOT NULL,	
+  nauczyciel			varchar(50)	NOT NULL,
+  ocena			integer		NOT NULL,
+  data				date		NOT NULL,
+  godzina			time		NOT NULL,
+  CONSTRAINT dziennik_ocen_pkey PRIMARY KEY (dziennik_ocen_id),
 );
 
 
