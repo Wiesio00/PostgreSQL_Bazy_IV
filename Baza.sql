@@ -20,7 +20,7 @@ CREATE TABLE przedmiot
 
 CREATE TABLE typ_egzaminu
 (
-	typ_egzaminu_id integer NOT NULL
+	typ_egzaminu_id integer NOT NULL,
 	rodzaj_egzaminu varchar(20) NOT NULL,
 	CONSTRAINT typ_egzaminu_pkey PRIMARY KEY (typ_egzaminu_id)
 );
@@ -30,6 +30,16 @@ CREATE TABLE tytul_naukowy
   tytul_naukowy_id		serial	NOT NULL,
   nazwa_skrot			varchar(20)  NOT NULL,
   CONSTRAINT tytul_naukowy_pkey PRIMARY KEY (tytul_naukowy_id)
+);
+
+CREATE TABLE opiekun
+(
+	opiekun_id serial NOT NULL,
+	nazwisko varchar(30) NOT NULL,
+	imie varchar(30) NOT NULL,
+	telefon numeric(9) NOT NULL,
+	email varchar(40),
+	CONSTRAINT opiekun_pkey PRIMARY KEY (opiekun_id)
 );
 
 CREATE TABLE uczen
@@ -45,7 +55,7 @@ CREATE TABLE uczen
   opiekun			integer NOT NULL,
   CONSTRAINT uczen_pkey PRIMARY KEY (uczen_id),
 	CONSTRAINT fk_uczen_opiekun FOREIGN KEY (opiekun)
-		REFERENCES opiekun (id) MATCH SIMPLE
+		REFERENCES opiekun (opiekun_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
@@ -56,7 +66,7 @@ CREATE TABLE klasa
 	uczen integer NOT NULL,
 	wychowawca integer NOT NULL,
 	CONSTRAINT klasa_pkey PRIMARY KEY (klasa_id),
-	CONSTARINT fk_klasa_uczen FOREIGN KEY (uczen)
+	CONSTARINT fk_klasa_uczen FOREIGN KEY (uczen_id)
 		REFERENCES uczen (uczen_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT fk_klasa_nauczyciel FOREIGN KEY (nauczyciel)
@@ -64,15 +74,6 @@ CREATE TABLE klasa
 		ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE opiekun
-(
-	opiekun_id serial NOT NULL,
-	nazwisko varchar(30) NOT NULL,
-	imie varchar(30) NOT NULL
-	telefon numeric(9) NOT NULL,
-	e-mail vorchar(40),
-	CONSTRAINT opiekun_pkey PRIMARY KEY (opiekun_id)
-);
 
 CREATE TABLE nauczyciel
 (
@@ -121,7 +122,6 @@ CREATE TABLE dziennik_ocen
 		REFERENCES typ_egzaminu (typ_egzaminu_id) MATCH SIMPLE
 		ON UPDATE NO ACTION ON DELETE NO ACTION,
 );
-
 
 
 
