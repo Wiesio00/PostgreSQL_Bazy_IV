@@ -32,11 +32,11 @@ CREATE TABLE uczen
   nazwisko			varchar(30)	NOT NULL,
   imie				varchar(30)	NOT NULL,
   klasa       integer NOT NULL,
-  kod_pocztowy numeric(5) NOT NULL,
-  miejscowosc varchar(20) NOT NULL,
-  ulica_nr varchar(30) NOT NULL,
-  data_urodzenia DATE NOT NULL,
-  opiekun integer NOT NULL,
+  kod_pocztowy  numeric(5) NOT NULL,
+  miejscowosc   varchar(20) NOT NULL,
+  ulica_nr  varchar(30) NOT NULL,
+  data_urodzenia  DATE NOT NULL,
+  opiekun   integer NOT NULL,
   CONSTRAINT uczen_pkey PRIMARY KEY (uczen_id)
 );
 
